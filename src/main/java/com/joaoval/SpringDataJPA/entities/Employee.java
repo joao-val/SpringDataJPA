@@ -1,22 +1,27 @@
 package com.joaoval.SpringDataJPA.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
+@Table(name = "tb_employee")
 public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstName;
-    private String lastName;
 
-    public Employee(String firstName, String lastName) {
+    @Column(name = "firstName")
+    private String firstName;
+
+    @Column(name = "lastName")
+    private String lastName;
+    private BigDecimal salary;
+
+    public Employee(String firstName, String lastName, BigDecimal salary) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.salary = salary;
     }
 
     public Employee(Long id) {
@@ -50,12 +55,21 @@ public class Employee {
         this.lastName = lastName;
     }
 
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", salary=" + salary +
                 '}';
     }
 }
