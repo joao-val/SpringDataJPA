@@ -15,7 +15,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -23,13 +24,12 @@ import static org.junit.Assert.*;
 public class EmployeeControllerTest {
 
     @Autowired
-    private EmployeeService employeeService;
-
-    @Autowired
     private EmployeeRepository employeeRepository;
 
+    @Autowired
+    private EmployeeService employeeService;
+
     @Test
-    @Before
     public void findByIdTest() {
         Employee employee = employeeService.getEmployeeById(2L);
 
@@ -40,9 +40,9 @@ public class EmployeeControllerTest {
 
     @Test
     public void deleteByIdTeste() {
-        Employee employee = employeeService.deleteEmployee(2L);
+        Employee employee = employeeService.deleteEmployee(3L);
 
-        Optional<Employee> optionalEmployee = employeeRepository.findById(2L);
+        Optional<Employee> optionalEmployee = employeeRepository.findById(3L);
 
         assertFalse(optionalEmployee.isPresent());
     }

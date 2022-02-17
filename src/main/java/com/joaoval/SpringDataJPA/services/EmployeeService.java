@@ -36,7 +36,13 @@ public class EmployeeService {
     }
 
     public Employee saveEmployee(@RequestBody Employee employee) {
+        validateFields(employee);
         return employeeRepository.save(employee);
+    }
+
+    private void validateFields(Employee employee) {
+        if (employee.getFirstName() == null || employee.getSalary() == null)
+            throw new RuntimeException("Fields are required...");
     }
 
     public Employee deleteEmployee(@PathVariable Long id) {
