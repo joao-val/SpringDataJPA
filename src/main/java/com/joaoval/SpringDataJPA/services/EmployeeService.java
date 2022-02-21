@@ -19,34 +19,33 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Employee getEmployeeById(@PathVariable Long id) {
-        Optional<Employee> optionalEmployee = getOptionalEmployee(id);
-        Employee employee = null;
-        if (optionalEmployee.isEmpty()) {
-            throw new RuntimeException("Employee not found by ID: " + id);
-        }
-        else {
-            employee = optionalEmployee.get();
-        }
-        return employee;
-    }
-
-    private Optional<Employee> getOptionalEmployee(Long id) {
-        return employeeRepository.findById(id);
+    public Optional<Employee> getEmployeeById(@PathVariable Long id) {
+        return Optional.ofNullable(validateId(id));
     }
 
     public Employee saveEmployee(@RequestBody Employee employee) {
         validateFields(employee);
+        Employee employee1 = new Employee(employee.getId(), employee.getFirstName(), employee.getLastName(), employee.getSalary());
         return employeeRepository.save(employee);
+    }
+
+    public Employee deleteEmployee(@PathVariable Long id) {
+        validateId(id);
+        employeeRepository.deleteById(id);
+        return null;
+    }
+
+    public Employee validateId(@PathVariable Long id) {
+        Optional<Employee> optEmployee = employeeRepository.findById(id);
+        Employee employee = null;
+        if (optEmployee.isEmpty()) {
+            throw new RuntimeException("Employee not found by ID: " + id);
+        }
+        return employee = optEmployee.get();
     }
 
     private void validateFields(Employee employee) {
         if (employee.getFirstName() == null || employee.getSalary() == null)
             throw new RuntimeException("Fields are required...");
-    }
-
-    public Employee deleteEmployee(@PathVariable Long id) {
-        employeeRepository.deleteById(id);
-        return null;
     }
 }

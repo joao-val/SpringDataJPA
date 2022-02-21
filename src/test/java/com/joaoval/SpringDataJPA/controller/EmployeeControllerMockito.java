@@ -29,7 +29,6 @@ public class EmployeeControllerMockito {
     private EmployeeService employeeService;
 
     @Test
-    @Before
     public void saveVerification() {
         Employee employee = new Employee();
         employee.setFirstName("Teste");

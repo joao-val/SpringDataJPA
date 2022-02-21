@@ -1,5 +1,7 @@
 package com.joaoval.SpringDataJPA.entities;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -8,7 +10,7 @@ import java.math.BigDecimal;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "firstName")
@@ -18,14 +20,11 @@ public class Employee {
     private String lastName;
     private BigDecimal salary;
 
-    public Employee(String firstName, String lastName, BigDecimal salary) {
+    public Employee(Long id, String firstName, String lastName, BigDecimal salary) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
-    }
-
-    public Employee(Long id) {
-        this.id = id;
     }
 
     public Employee() {

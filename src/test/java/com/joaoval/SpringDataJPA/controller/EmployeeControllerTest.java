@@ -3,8 +3,6 @@ package com.joaoval.SpringDataJPA.controller;
 import com.joaoval.SpringDataJPA.entities.Employee;
 import com.joaoval.SpringDataJPA.repositories.EmployeeRepository;
 import com.joaoval.SpringDataJPA.services.EmployeeService;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +29,7 @@ public class EmployeeControllerTest {
 
     @Test
     public void findByIdTest() {
-        Employee employee = employeeService.getEmployeeById(2L);
+        Employee employee = employeeService.validateId(2L);
 
         assertEquals("Anakin", employee.getFirstName());
         assertEquals(BigDecimal.valueOf(250000.01), employee.getSalary());
