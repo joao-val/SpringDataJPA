@@ -26,7 +26,8 @@ public class ClientController {
 
         return ClientService.getClientById(id);
     }
-    
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping()
     public Client saveClient(@RequestBody Client Client) {
         return ClientService.saveClient(Client);

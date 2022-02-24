@@ -17,6 +17,14 @@ public class JWTUtil {
     @Value("${jwt.expiration}")
     private Long expiration;
 
+//    public String generateToken(String username) {
+//        return Jwts.builder()
+//                .setSubject(username)
+//                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+//                .signWith(SignatureAlgorithm.HS512, secret.getBytes())
+//                .compact();
+//    }
+
     public String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
@@ -37,15 +45,17 @@ public class JWTUtil {
         }
         return false;
     }
+
     public String getUsername(String token) {
         Claims claims = getClaims(token);
         if (claims != null) {
-            String username = claims.getSubject();
+            return claims.getSubject();
         }
         return null;
     }
+
     private Claims getClaims(String token) {
-        token = token.substring(7);
+//        token = token.substring(7);
         try {
             return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody();
         }
