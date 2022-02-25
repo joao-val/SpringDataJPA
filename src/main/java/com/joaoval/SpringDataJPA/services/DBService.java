@@ -39,7 +39,7 @@ public class DBService {
         Employee emp1 = new Employee(null, "João Vitor", "Alves Lima", BigDecimal.valueOf(2500.00));
         Employee emp2 = new Employee(null, "Anakin", "Skywalker", BigDecimal.valueOf(250000.01));
         Employee emp3 = new Employee(null, "Laurien", "Costa", BigDecimal.valueOf(3500.00));
-        Employee emp4 = new Employee(null, "Breno", "Morais", BigDecimal.valueOf(99999999.00));
+        Employee emp4 = new Employee(null, "Breno", "Morais", BigDecimal.valueOf(999999.15));
         Employee emp5 = new Employee(null, "Scooby", "Lima", BigDecimal.valueOf(1500.00));
 
         employeeRepository.saveAll(Arrays.asList(emp1, emp2, emp3, emp4, emp5));

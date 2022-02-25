@@ -2,6 +2,7 @@ package com.joaoval.SpringDataJPA.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.joaoval.SpringDataJPA.entities.enums.Profile;
+import org.springframework.data.redis.core.RedisHash;
 
 import javax.persistence.*;
 import java.util.HashSet;
